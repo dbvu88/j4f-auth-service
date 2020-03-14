@@ -41,7 +41,11 @@ app.use(function (err, req, res, next) {
   // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500).json({ message: err.message })
+  if (err.code == 23505) {
+    res.status(err.status || 500).json({ message: "Username already exists!" })
+    return
+  }
+  res.status(err.status || 500).json({ message: err })
 });
 
 module.exports = app;

@@ -45,10 +45,15 @@ router
 
     })
     .post('/signup', async (req, res, next) => {
-        const { username, role, password } = req.body
-        if (!username || !role || !password) {
+        const { username, password } = req.body
+
+        if (!username || !password) {
             res.status(400).json({ message: 'Bad Request!' })
+            return;
         }
+
+        let role = "member"
+        role = !req.body.role ? role : req.body.role
 
         const hash = bcrypt.hashSync(password, parseInt(process.env.SALT));
 
@@ -58,6 +63,7 @@ router
                 console.log(data)
                 if (data.rowCount === 0) {
                     res.status(406).json({ message: 'User Not Successfully Registered' })
+                    return
                 }
                 res.json({ username, role })
             })
