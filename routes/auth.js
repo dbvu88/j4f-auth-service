@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 
-const getUser = async username => await db('accounts')
+const getUser = async username => await db('users')
     .where('username', username)
     .then(data => { return data })
     .catch(err => { throw err })
@@ -51,7 +51,7 @@ router
 
         const hash = bcrypt.hashSync(password, parseInt(process.env.SALT));
 
-        await db('accounts')
+        await db('users')
             .insert({ username, role, password: hash })
             .then(data => {
                 console.log(data)
