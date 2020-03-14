@@ -35,6 +35,7 @@ router
 
             if (correctPassword) {
                 res.json({ username, role })
+                return;
             }
         } catch (err) {
             next(err)
