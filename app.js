@@ -7,10 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var favicon = require('serve-favicon');
+
 
 
 var app = express();
-
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
