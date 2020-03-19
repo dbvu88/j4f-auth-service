@@ -19,9 +19,9 @@ router
         }
     })
     .post('/login', async (req, res, next) => {
-        const failedMsg = 'Wrong Credential'
+        const failedMsg = 'You may have entered a wrong username or password'
         const { username, role, password } = req.body
-        if (!username || !role || !password) {
+        if (!username || !password) {
             res.status(400).json({ message: 'Bad Request!' })
         }
 
