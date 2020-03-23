@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET users listing. */
 router
   .get('/', async (req, res, next) => {
-    await db('usersTemp')
+    await db('users')
       .then(data => res.json(data))
       .catch(next)
   })
